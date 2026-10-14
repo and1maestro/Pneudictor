@@ -1,0 +1,65 @@
+import stripe
+from django.conf import settings
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
+from .forms import *
+from .models import *
+
+
+class SignUpView(CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    form_class = CustomUserUpdateForm
+    success_url = reverse_lazy('accounts:profile')
+    template_name = 'registration/profile.html'
+
+    def get_object(self, *args, **kwargs):
+        return self.request.user
+
+
+def PremiumView(request):
+    return render(request, 'accounts/premium.html')
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+def create_checkout_session(request):
+    if request.method == 'POST':
+        try:
+            domain_url = request.build_absolute_uri('/')[:-1]
+
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[
+                    {
+                        'price_data': {
+                            'currency': 'usd',
+                            'unit_amount': 1000,
+                            'product_data': {
+                                'name': 'Pneudictor Premium',
+                                'description': 'Розширені можливості аналізу та історії',
+                            },
+                        },
+                        'quantity': 1,
+                    },
+                ],
+                mode='payment',
+                success_url=domain_url + reverse('accounts:profile') + '?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + reverse('accounts:premium'),
+            )
+            return redirect(checkout_session.url, code=303)
+
+        except Exception as e:
+            return str(e)
+
+    return redirect('accounts:premium')

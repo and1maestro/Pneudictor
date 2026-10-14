@@ -1,0 +1,21 @@
+# Віртуальне оточення
+.venv/
+venv/
+ENV/
+
+# Налаштування PyCharm / VS Code
+.idea/
+.vscode/
+
+# База даних та медіа-файли
+*.sqlite3
+db.sqlite3
+/media/
+
+# Кеш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Змінні оточення (якщо з'явиться .env)
+.env
