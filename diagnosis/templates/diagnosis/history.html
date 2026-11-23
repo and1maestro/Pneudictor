@@ -1,7 +1,7 @@
 {% extends "diagnosis/base.html" %}
 {% load static %}
 
-{% block title %}Історія діагностики{% endblock %}
+{% block title %}Diagnosis history{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -16,7 +16,7 @@
         min-height: 500px;
     }
 
-    /* Колонки */
+    /* Columns */
     .history-column {
         flex: 1;
         display: flex;
@@ -101,11 +101,11 @@
         margin-top: 2px;
     }
 
-    /* Стилі результатів */
+    /* Result styles */
     .result-text-danger { color: #7c3c3c; font-weight: bold; }
     .result-text-safe { color: #2e7d32; font-weight: bold; }
 
-    /* Елементи візуалізації (кружечки) */
+    /* Circles */
     .psi-score-circle {
         width: 50px;
         height: 50px;
@@ -131,7 +131,7 @@
         flex-shrink: 0;
     }
 
-    /* Порожній стан - вирівнюємо красиво */
+    /* Empty state */
     .empty-state {
         text-align: center;
         padding: 1.8rem 20px;
@@ -143,14 +143,14 @@
         margin-top: 0;
     }
 
-    /* Адаптивність */
+    /* Adaptivity */
     @media (max-width: 768px) {
         .history-container {
             flex-direction: column;
-            align-items: stretch; /* На мобільному розтягуємо на всю ширину */
+            align-items: stretch; 
         }
         .column-header {
-            min-height: auto; /* На мобільному висота може бути автоматичною */
+            min-height: auto; 
             padding-bottom: 10px;
         }
     }
@@ -161,7 +161,7 @@
 
 <div class="history-container">
     <div class="history-column">
-    <h2 class="column-header">Клінічні дані</h2>
+    <h2 class="column-header">Clinical data</h2>
 
     {% if clinical_records %}
         {% for record in clinical_records %}
@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="card-info">
-                    <div class="card-title">Клас ризику: {{ record.risk_class }}</div>
+                    <div class="card-title">Risk class: {{ record.risk_class }}</div>
                     <div class="card-details">{{ record.mortality_prediction }}</div>
                 </div>
 
@@ -182,12 +182,12 @@
             </div>
         {% endfor %}
     {% else %}
-        <div class="empty-state">Немає записів.</div>
+        <div class="empty-state">No records yet.</div>
     {% endif %}
 </div>
 
 <div class="history-column">
-    <h2 class="column-header">Рентген</h2>
+    <h2 class="column-header">X-ray</h2>
 
     {% if xray_records %}
         {% for xray in xray_records %}
@@ -201,12 +201,12 @@
                 <div class="card-info">
                     <div class="card-title">
                         {% if xray.result == "pneumonia" %}
-                            <span class="result-text-danger">Пневмонія</span>
+                            <span class="result-text-danger">Pneumonia</span>
                         {% else %}
-                            <span class="result-text-safe">Норма</span>
+                            <span class="result-text-safe">Normal</span>
                         {% endif %}
                     </div>
-                    <div class="card-details">Впевненість: <br>{{ xray.confidence }}%</div>
+                    <div class="card-details">Confidence: <br>{{ xray.confidence }}%</div>
                 </div>
 
                 <div class="card-meta">
@@ -216,7 +216,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <div class="empty-state">Немає знімків.</div>
+        <div class="empty-state">No images yet.</div>
     {% endif %}
     </div>
 </div>

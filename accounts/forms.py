@@ -23,6 +23,6 @@ class CustomUserUpdateForm(forms.ModelForm):
         model = CustomUser
         fields = ('first_name', 'email',)
         labels = {
-            'first_name': "Ім'я",
-            'email': 'Електронна пошта',
+            'first_name': "First name",
+            'email': 'Email address',
         }

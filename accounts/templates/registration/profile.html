@@ -1,7 +1,7 @@
 {% extends "diagnosis/base.html" %}
 {% load static %}
 
-{% block title %}Обліковий запис{% endblock %}
+{% block title %}Account{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -50,7 +50,7 @@
 <div class="auth-container">
 
     <div class="auth-left">
-        <h2 class="auth-title">Обліковий запис</h2>
+        <h2 class="auth-title">Account</h2>
 
         <form method="post" class="auth-form">
             {% csrf_token %}
@@ -68,12 +68,20 @@
             {% endfor %}
 
             <div class="field-wrapper">
-                <label>Пароль</label>
-                <input type="password" value="********" readonly onclick="window.location.href='{% url 'accounts:password_change' %}'" style="cursor: pointer;" title="Натисніть, щоб змінити пароль">
+                <label>Password</label>
+                <input
+                    type="password"
+                    value="********"
+                    readonly
+                    data-url="{% url 'accounts:password_change' %}"
+                    onclick="window.location.href = this.dataset.url;"
+                    style="cursor: pointer;"
+                    title="Click to change password"
+                >
             </div>
 
             <div class="btn-group">
-                <button type="submit" class="auth-btn">Зберегти</button>
+                <button type="submit" class="auth-btn">Save</button>
 
             </div>
         </form>
@@ -81,7 +89,7 @@
         <div class="btn-group" style="margin-top: 15px;">
             <form action="{% url 'logout' %}" method="post" style="width: 100%;">
                 {% csrf_token %}
-                <button type="submit" class="btn-danger">Вийти</button>
+                <button type="submit" class="btn-danger">Sign out</button>
             </form>
         </div>
 

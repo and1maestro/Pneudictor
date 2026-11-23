@@ -57,7 +57,7 @@ class XRayDataView(LoginRequiredMixin, CreateView):
 
         except Exception as e:
             print(f"ML Error: {e}")
-            self.object.result = "Помилка аналізу"
+            self.object.result = "Analysis error"
             self.object.confidence = 0.0
             self.object.save()
 

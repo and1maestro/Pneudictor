@@ -1,6 +1,6 @@
 {% extends 'diagnosis/base.html' %}
 
-{% block title %}Результати аналізу рентгену{% endblock %}
+{% block title %}X-ray analysis results{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -26,22 +26,22 @@
 {% endblock %}
 
 {% block content %}
-<h1 >Результат ШІ діагностики</h1>
+<h1 >AI diagnosis result</h1>
     <div class="result-box">
         <div class="image-container">
-            <img src="{{ scan_result.image.url }}" alt="Рентгенівський знімок">
+            <img src="{{ scan_result.image.url }}" alt="X-ray image">
         </div>
 
         <hr style="margin: 30px 0; border: 0; border-top: 1px solid rgba(0,0,0,0.1);">
 
-        <p>Вердикт системи:</p>
+        <p>System assessment:</p>
 
         {% if scan_result.result == "normal" %}
-            <div class="diagnosis-normal">Здоровий</div>
+            <div class="diagnosis-normal">Normal</div>
         {% else %}
-            <div class="diagnosis-danger">Пневмонія</div>
+            <div class="diagnosis-danger">Pneumonia</div>
         {% endif %}
 
-        <p class="confidence">Впевненість моделі: {{ scan_result.confidence|floatformat:2 }}%</p>
+        <p class="confidence">Model confidence: {{ scan_result.confidence|floatformat:2 }}%</p>
     </div>
 {% endblock %}

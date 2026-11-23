@@ -1,7 +1,7 @@
 {% extends 'diagnosis/base.html' %}
 {% load static %}
 
-{% block title %}Про Pneudictor{% endblock %}
+{% block title %}About Pneudictor{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -123,16 +123,16 @@
 
     <div class="info-content">
         <div class="info-image">
-            <img src="{% static 'diagnosis/img/lungs.jpg' %}" alt="Рентген легень">
+            <img src="{% static 'diagnosis/img/lungs.jpg' %}" alt="Chest X-ray">
         </div>
 
         <div class="info-text">
             <p>
-                <strong>Pneudictor</strong> — це інноваційний інструмент, що використовує передові алгоритми машинного навчання нейромережей для допомоги лікарям у виявленні пневмонії.
+                <strong>Pneudictor</strong> is an innovative tool that uses advanced neural network and machine learning algorithms to help doctors detect pneumonia.
             </p>
             <br>
             <p>
-                Наша модель навчена на тисячах верифікованих рентгенівських знімків. Вона аналізує зображення піксель за пікселем, знаходячи найменші ознаки патології. Також враховуються клінічні дані пацієнта (температура, вік, симптоми) для формування точного прогнозу.
+                Our model was trained on thousands of verified X-ray images. It analyzes images pixel by pixel to identify subtle signs of disease. Patient clinical data (temperature, age, and symptoms) are also considered to produce an accurate prediction.
             </p>
         </div>
     </div>
@@ -140,27 +140,27 @@
     <div class="features-grid">
         <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-brain"></i></div>
-            <div class="feature-title">Штучний Інтелект</div>
-            <p>Використання нейромереж для аналізу рентгенівських знімків з високою точністю.</p>
+            <div class="feature-title">Artificial intelligence</div>
+            <p>Neural networks analyze X-ray images with high accuracy.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-            <div class="feature-title">Швидкість</div>
-            <p>Миттєвий результат аналізу, що дозволяє економити дорогоцінний час при діагностиці.</p>
+            <div class="feature-title">Speed</div>
+            <p>Instant analysis results save valuable time during diagnosis.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-user-md"></i></div>
-            <div class="feature-title">Допомога лікарю</div>
-            <p>Зменшення ризику лікарської помилки шляхом надання "другої думки".</p>
+            <div class="feature-title">Support for doctors</div>
+            <p>A second opinion helps reduce the risk of medical errors.</p>
         </div>
     </div>
 
     <div class="disclaimer-box">
-        <h3>Медичне застереження</h3>
+        <h3>Medical disclaimer</h3>
         <p>
-            Цей додаток є інструментом підтримки прийняття рішень. Всі результати мають інформаційний характер.
-            Штучний інтелект не може замінити клінічне мислення лікаря.
-            Остаточне рішення щодо діагнозу та лікування завжди залишається за медичним фахівцем.
+            This application is a decision support tool. All results are provided for informational purposes.
+            Artificial intelligence cannot replace a doctor's clinical judgment.
+            The final decision on diagnosis and treatment always rests with a medical professional.
         </p>
     </div>
 

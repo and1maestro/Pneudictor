@@ -4,7 +4,7 @@ function submitForm() {
 
     if (input.files.length > 0) {
         btn.style.opacity = '0.5';
-        btn.innerText = 'Аналізуємо...';
+        btn.innerText = 'Analyzing...';
 
         document.getElementById('upload-form').submit();
     }

@@ -38,7 +38,7 @@
 </div> <div class="auth-container" style="margin-top: -20px; width: 100vw; max-width: 100%;">
 
     <div class="auth-left">
-        <h2 class="auth-title">Почніть вже зараз</h2>
+        <h2 class="auth-title">Start now</h2>
 
         <form method="post" class="auth-form">
             {% csrf_token %}
@@ -55,11 +55,11 @@
                 </div>
             {% endfor %}
 
-            <button type="submit" class="auth-btn">Зареєструватися</button>
+            <button type="submit" class="auth-btn">Sign up</button>
         </form>
 
         <div class="auth-footer">
-            Вже маєте обліковий запис? <a href="{% url 'login' %}" class="auth-link">Увійти</a>
+            Already have an account? <a href="{% url 'login' %}" class="auth-link">Sign in</a>
         </div>
     </div>
 

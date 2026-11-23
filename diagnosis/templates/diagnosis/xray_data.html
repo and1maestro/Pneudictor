@@ -1,6 +1,6 @@
 {% extends 'diagnosis/base.html' %}
 
-{% block title %}Аналіз рентгену{% endblock %}
+{% block title %}X-ray analysis{% endblock %}
 
 {% block extra_css %}
         <style>
@@ -52,19 +52,19 @@
 {% block content %}
 <div class="big-icon">?</div>
 
-<h1>Немає завантаженого знімку...</h1>
+<h1>No image uploaded yet...</h1>
 
 <p class="description">
-    Звідки береться результат? Ми використовуємо технологію комп'ютерного зору.
-    Система сканує завантажений вами рентгенівський знімок піксель за пікселем,
-    шукаючи специфічні ознаки запалення легень (затемнення, зміни легеневого малюнка).
-    Додатково аналізуються ваші симптоми, щоб виключити помилку.
+    How are results generated? We use computer vision technology.
+    The system scans your uploaded X-ray image pixel by pixel,
+    looking for specific signs of pneumonia (opacities and changes in lung markings).
+    Your symptoms are also analyzed to help rule out errors.
     <br>
-    Інструкція: Будь ласка, завантажте якісний скан рентгену грудної клітини.
+    Instructions: Please upload a high-quality chest X-ray scan.
 </p>
 
 <p class="disclaimer">
-    Пам'ятайте: остаточний діагноз встановлює лікар.
+    Remember: the final diagnosis is made by a doctor.
 </p>
 
 <form method="post" enctype="multipart/form-data" id="upload-form">
@@ -73,14 +73,14 @@
     <input type="file" name="image" id="id_image" class="hidden-input" accept="image/*" onchange="submitForm()">
 
     <label for="id_image" class="btn">
-        Завантажити знімок
+        Upload image
     </label>
 
     {% if form.image.errors %}
         <div class="error-message" style="color: #d9534f; font-weight: bold; margin-top: 15px; text-align: center;">
-            Увага: дозволено завантажувати лише зображення у форматах JPG, JPEG або PNG.
+            Please upload an image in JPG, JPEG, or PNG format only.
             <br>
-            <span style="font-size: 12px; font-weight: normal;">(Деталі: {{ form.image.errors|striptags }})</span>
+            <span style="font-size: 12px; font-weight: normal;">(Details: {{ form.image.errors|striptags }})</span>
         </div>
     {% endif %}
 </form>

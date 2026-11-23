@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
+from django.http import HttpResponse
+from config.settings import STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY
 from .forms import *
 from .models import *
 
@@ -30,7 +32,7 @@ def PremiumView(request):
     return render(request, 'accounts/premium.html')
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 def create_checkout_session(request):
@@ -39,7 +41,6 @@ def create_checkout_session(request):
             domain_url = request.build_absolute_uri('/')[:-1]
 
             checkout_session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
                 line_items=[
                     {
                         'price_data': {
@@ -47,7 +48,7 @@ def create_checkout_session(request):
                             'unit_amount': 1000,
                             'product_data': {
                                 'name': 'Pneudictor Premium',
-                                'description': 'Розширені можливості аналізу та історії',
+                                'description': 'Advanced analysis and history features',
                             },
                         },
                         'quantity': 1,
@@ -60,6 +61,6 @@ def create_checkout_session(request):
             return redirect(checkout_session.url, code=303)
 
         except Exception as e:
-            return str(e)
+            return HttpResponse(f"Stripe error: {e}", status=400)
 
     return redirect('accounts:premium')
