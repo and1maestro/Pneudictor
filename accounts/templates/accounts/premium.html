@@ -1,7 +1,7 @@
 {% extends "diagnosis/base.html" %}
 {% load static %}
 
-{% block title %}Преміум версія{% endblock %}
+{% block title %}Premium{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -41,7 +41,6 @@
         font-weight: 500;
     }
 
-    /* Список переваг */
     .premium-list {
         list-style: none;
         padding: 0;
@@ -68,18 +67,18 @@
     <div class="divider-line"></div>
 
     <div class="premium-text">
-        Перехід на преміум версію включає:
+        Switching to premium includes:
         
         <ul class="premium-list">
-            <li>• доступ до необмеженої кількості використань програми;</li>
-            <li>• доступ до історії.</li>
+            <li>• umlimited access to service usage;</li>
+            <li>• history access.</li>
         </ul>
     </div>
 
     <form action="{% url 'accounts:create_checkout_session' %}" method="POST">
         {% csrf_token %}
         <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
-            Перейти на преміум
+            Switch to premium
         </button>
     </form>
 

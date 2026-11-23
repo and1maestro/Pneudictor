@@ -41,15 +41,15 @@ def calculate_psi_score(data):
 
 def get_risk_class(score):
     if score <= 50:
-        return "I (Низький)", "0.1%"
+        return "I (Low)", "0.1%"
     elif score <= 70:
-        return "II (Низький)", "0.6%"
+        return "II (Low)", "0.6%"
     elif score <= 90:
-        return "III (Середній)", "0.9 - 2.8%"
+        return "III (Moderate)", "0.9 - 2.8%"
     elif score <= 130:
-        return "IV (Високий)", "8.2 - 9.3%"
+        return "IV (High)", "8.2 - 9.3%"
     else:
-        return "V (Дуже високий)", "27 - 31%"
+        return "V (Very high)", "27 - 31%"
 
 def load_model(model_path):
     print(f"Loading saved model from: {model_path}...")
@@ -102,12 +102,12 @@ def get_pred_label(preds):
 
 MODEL_PATH = os.path.join(settings.BASE_DIR, 'diagnosis', 'models', '20260122-06061769064826-full-model-mobilenetv2-Adam.h5')
 
-print("Завантаження ML моделі...")
+print("Loading ML model...")
 try:
     AI_MODEL = load_model(MODEL_PATH)
-    print("Модель успішно завантажена!")
+    print("Model loaded successfully!")
 except Exception as e:
-    print(f"Не вдалося завантажити модель: {e}")
+    print(f"Failed to load model: {e}")
     AI_MODEL = None
 
 def calculate_xray_probability(img_path):

@@ -1,6 +1,6 @@
 {% extends "diagnosis/base.html" %}
 
-{% block title %}Результати аналізу клінічних даних{% endblock %}
+{% block title %}Clinical analysis results{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -101,7 +101,6 @@
         font-weight: 500;
     }
 
-    /* Стрілка в кнопці */
     .btn-arrow { font-size: 1.4rem; }
 </style>
 {% endblock %}
@@ -113,17 +112,17 @@
             <i class="fas fa-clipboard-list"></i>
         </div>
 
-        <h1>Результат аналізу PSI</h1>
+        <h1>PSI analysis result</h1>
 
         <p class="patient-info-header">
-            Пацієнт: {{ user.first_name|default:user.username }} |
-            Дата: {{ clinical_record.created_at|date:"d.m.Y H:i" }}
+            Patient: {{ user.first_name|default:user.username }} |
+            Date: {{ clinical_record.created_at|date:"d.m.Y H:i" }}
         </p>
 
         <div class="result-card-styled">
 
             <div class="risk-section">
-                <span class="label">Клас ризику (PSI):</span>
+                <span class="label">Risk class (PSI):</span>
                 {% if clinical_record.psi_score <= 70 %}
                     <div class="risk-value-large risk-low">{{ clinical_record.risk_class }}</div>
                 {% elif clinical_record.psi_score <= 90 %}
@@ -132,18 +131,18 @@
                     <div class="risk-value-large risk-high">{{ clinical_record.risk_class }}</div>
                 {% endif %}
 
-                <div class="score-subtitle">Індекс тяжкості: <strong>{{ clinical_record.psi_score }}</strong> балів</div>
+                <div class="score-subtitle">Severity index: <strong>{{ clinical_record.psi_score }}</strong> points</div>
             </div>
 
             <hr class="divider">
 
             <div class="details-grid">
                 <div class="detail-item">
-                    <span class="detail-label">Прогноз смертності:</span>
+                    <span class="detail-label">Predicted mortality:</span>
                     <span class="detail-value">{{ clinical_record.mortality_prediction }}</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">Врахована температура:</span>
+                    <span class="detail-label">Recorded temperature:</span>
                     <span class="detail-value">{{ clinical_record.temperature }}°C</span>
                 </div>
             </div>
@@ -151,25 +150,25 @@
             <hr class="divider">
 
             <div class="recommendation-section">
-                <h3>Клінічна рекомендація:</h3>
+                <h3>Clinical recommendation:</h3>
                 {% if clinical_record.psi_score <= 70 %}
-                    <div class="recommendation-text rec-bg-low">Лікування амбулаторно</div>
+                    <div class="recommendation-text rec-bg-low">Outpatient treatment</div>
                 {% elif clinical_record.psi_score <= 90 %}
-                    <div class="recommendation-text rec-bg-medium">Короткочасна госпіталізація</div>
+                    <div class="recommendation-text rec-bg-medium">Short-term hospitalization</div>
                 {% else %}
-                    <div class="recommendation-text rec-bg-high">Термінова госпіталізація!</div>
+                    <div class="recommendation-text rec-bg-high">Urgent hospitalization!</div>
                 {% endif %}
             </div>
         </div>
 
         <p class="disclaimer-text">
-            Ці результати є оцінкою ризику на основі індексу тяжкості пневмонії (PSI).
-            Це — орієнтир, який повинен допомогти лікарю прийняти рішення щодо місця лікування.
-            Остаточне рішення завжди залишається за лікарем, який доглядає за пацієнтом.
+            These results estimate risk based on the Pneumonia Severity Index (PSI).
+            They serve as a guide to help doctors decide on the appropriate treatment setting.
+            The final decision always rests with the doctor caring for the patient.
         </p>
 
         <a href="{% url 'home' %}" class="btn">
-            <span class="btn-arrow">←</span> На головну
+            <span class="btn-arrow">←</span> Back to home
         </a>
 
     </div>
