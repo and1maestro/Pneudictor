@@ -58,7 +58,7 @@ def create_checkout_session(request):
                 success_url=domain_url + reverse('accounts:profile') + '?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url=domain_url + reverse('accounts:premium'),
             )
-            return redirect(checkout_session.url, code=303)
+            return redirect(checkout_session.url)
 
         except Exception as e:
             return HttpResponse(f"Stripe error: {e}", status=400)
